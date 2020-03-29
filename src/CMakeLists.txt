@@ -45,7 +45,10 @@ add_executable (lua_compiler luac.c)
 target_link_libraries(lua_compiler lua_static_lib)
 
 add_library (lua_dynamic_lib SHARED ${CORE_SRC} ${LIB_SRC})
-target_compile_definitions (lua_dynamic_lib PUBLIC LUA_DL_DLL LUA_BUILD_AS_DLL)
+target_compile_definitions (lua_dynamic_lib PUBLIC LUA_BUILD_AS_DLL)
 
-add_executable (lua_interpreter luac.c)
-target_link_libraries(lua_interpreter lua_dynamic_lib)
+add_executable (lua_interpreter_dynamic lua.c)
+target_link_libraries(lua_interpreter_dynamic lua_dynamic_lib)
+
+add_executable (lua_interpreter_static lua.c)
+target_link_libraries(lua_interpreter_static lua_static_lib)
